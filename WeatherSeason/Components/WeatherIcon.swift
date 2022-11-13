@@ -1,5 +1,5 @@
 //
-//  WeatherIconView.swift
+//  WeatherIcon.swift
 //  WeatherSeason
 //
 //  Created by Ivan Aguiar on 13/11/2022.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct WeatherIconView: View {
+struct WeatherIcon: View {
     let iconCode: String
-    let imageSize: CGFloat = 50
+    let imageSize: CGFloat
     
     var body: some View {
         let iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png"
@@ -19,20 +19,19 @@ struct WeatherIconView: View {
                 image
                     .resizable()
                     .scaledToFill()
-                    .frame(width: imageSize, height: imageSize)
             } else if phase.error != nil {
                 Text(phase.error?.localizedDescription ?? "error")
                     .foregroundColor(.pink)
             } else {
                 ProgressView()
-                    .frame(width: imageSize, height: imageSize)
             }
         }
+        .frame(maxWidth: imageSize, maxHeight: imageSize)
     }
 }
 
-struct WeatherIconView_Previews: PreviewProvider {
+struct WeatherIcon_Previews: PreviewProvider {
     static var previews: some View {
-        WeatherIconView(iconCode: "04n")
+        WeatherIcon(iconCode: "04n", imageSize: 100)
     }
 }
