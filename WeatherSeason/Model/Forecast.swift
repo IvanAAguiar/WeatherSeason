@@ -12,4 +12,6 @@ struct Forecast: Codable {
     let message, cnt: Int
     let list: [List]
     let city: City
+    
+    static var exemple: Forecast = Bundle.main.decode("forecast.json")
 }
